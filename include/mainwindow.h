@@ -36,7 +36,7 @@ private
     slots:
             void
 
-    on_rastgele_clicked();
+    on_randomUniverse_clicked();
 
     void on_loadData_clicked();
 
