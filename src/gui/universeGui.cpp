@@ -1,7 +1,7 @@
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
-void MainWindow::on_rastgele_clicked() {
+void MainWindow::on_randomUniverse_clicked() {
     for (int i = 0; i < game->cellSizeY(); i++) {
         for (int j = 0; j < game->cellSizeX(); j++) {
             unsigned int index = unsigned(i * game->cellSizeX() + j);
@@ -13,7 +13,7 @@ void MainWindow::on_rastgele_clicked() {
         }
     }
 
-    // Rastgele ile ilk renge dönmeye gerek var mı?
+    // should randomUniverse return to the initial color?
     //int r=0,g=0,b=0; // RGB color
     //currentColor = QColor(r,g,b);
     //game->setMasterColor(currentColor); // sets color of the dots
@@ -23,6 +23,7 @@ void MainWindow::on_rastgele_clicked() {
     ui->colorButton->setIcon(QIcon(icon)); // set icon for button
     ui->iterInterval->setValue(1); // ms
     game->setInterval(1);
+    update();
 }
 
 void MainWindow::on_cellSizeX_valueChanged(int x) {
