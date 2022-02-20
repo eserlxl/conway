@@ -26,9 +26,9 @@ void MainWindow::saveGame() {
     file.write(s.toUtf8());
     file.close();
 
-    QString dataFile = filename + ".veri";
-    QString dataFile0 = filename + ".veri0";
-    QString databaseFile = filename + ".vt";
+    QString dataFile = filename + ".dat";
+    QString dataFile0 = filename + ".init";
+    QString databaseFile = filename + ".db";
     QString dataFilePart0 = filename + ".0";
     QString dataFilePart1 = filename + ".1";
 

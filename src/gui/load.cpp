@@ -33,7 +33,7 @@ void MainWindow::loadGame() {
     ui->iterInterval->setValue(r);
     game->setInterval(r);
 
-    QFile file2(filename.append(".veri"));
+    QFile file2(filename.append(".dat"));
     if (!file2.open(QIODevice::ReadOnly))
         return;
 
@@ -51,7 +51,7 @@ void MainWindow::loadGame() {
 
     file2.close();
 
-    QFile file3(filename.append(".veri0"));
+    QFile file3(filename.append(".init"));
     if (file3.open(QIODevice::ReadOnly)) {
         for (unsigned int i = 0; i < unsigned(sY); i++) {
             for (unsigned int j = 0; j < unsigned(sX); j++) {
