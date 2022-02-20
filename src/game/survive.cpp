@@ -5,7 +5,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
     //unsigned int index = row * universeSizeX + col;
     unsigned int neighbour = neighbourhood(row, col);
 
-    // 3x3 boş kareleri boşa analiz etmiyoruz - Döngü Hızlandırıcısı :)
+    // Don't analyse 3x3 empty rows - Loop accelerator :)
     if (power[index] == 0 && universe[index] == false) {
         return false;
     }
@@ -120,7 +120,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
                     survive = true;
                 }
                 break;
-                // Seeds için survive kuralı yok
+                // There is no survive rule for Seeds!
             default:
                 break;
         }
