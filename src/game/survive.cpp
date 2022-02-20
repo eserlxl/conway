@@ -125,7 +125,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
                 break;
         }
     }
-        // born?
+    // born?
     else {
         switch (algorithm) {
             case 0: // John Conway, Life Game
@@ -206,27 +206,27 @@ void GameWidget::setAlgorithm(int a) {
     algorithm = a;
 }
 
-void GameWidget::setpowerAlgorithmSurviveAlgorithm(int a) {
+void GameWidget::setPowerAlgorithmSurviveAlgorithm(int a) {
     powerAlgorithmSurviveAlgorithm = a;
 }
 
-void GameWidget::setpowerAlgorithmSurviveRule(int a) {
+void GameWidget::setPowerAlgorithmSurviveRule(int a) {
     powerAlgorithmSurviveRule = a;
 }
 
-void GameWidget::setpowerAlgorithmSurvive(double a) {
+void GameWidget::setPowerAlgorithmSurvive(double a) {
     powerAlgorithmSurvive = a;
 }
 
-void GameWidget::setpowerAlgorithmBornAlgorithm(int a) {
+void GameWidget::setPowerAlgorithmBornAlgorithm(int a) {
     powerAlgorithmBornAlgorithm = a;
 }
 
-void GameWidget::setpowerAlgorithmBornRule(int a) {
+void GameWidget::setPowerAlgorithmBornRule(int a) {
     powerAlgorithmBornRule = a;
 }
 
-void GameWidget::setpowerAlgorithmBorn(double a) {
+void GameWidget::setPowerAlgorithmBorn(double a) {
     powerAlgorithmBorn = a;
 }
 

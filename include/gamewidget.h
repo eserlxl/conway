@@ -90,17 +90,17 @@ public
 
     void setAlgorithm(int a);
 
-    void setpowerAlgorithmBornAlgorithm(int a);
+    void setPowerAlgorithmBornAlgorithm(int a);
 
-    void setpowerAlgorithmBornRule(int a);
+    void setPowerAlgorithmBornRule(int a);
 
-    void setpowerAlgorithmBorn(double a);
+    void setPowerAlgorithmBorn(double a);
 
-    void setpowerAlgorithmSurviveAlgorithm(int a);
+    void setPowerAlgorithmSurviveAlgorithm(int a);
 
-    void setpowerAlgorithmSurviveRule(int a);
+    void setPowerAlgorithmSurviveRule(int a);
 
-    void setpowerAlgorithmSurvive(double a);
+    void setPowerAlgorithmSurvive(double a);
 
     void setWorkDone(double ratio);
 
