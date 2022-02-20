@@ -10,9 +10,8 @@ unsigned int GameWidget::neighbourhood(unsigned int row, unsigned int col) {
 
     for (int i = -1; i < 2; i++) {
         for (int j = -1; j < 2; j++) {
-            // Kendisi hariç olanları değerlendiriyoruz
+            // Do not process itself
             if (!(i == 0 && j == 0)) {
-                // Harita dışındaki veriyi değerlendirmiyoruz
                 if (int(row) + i >= 0 && int(row) + i < int(universeSizeY) && int(col) + j >= 0 &&
                     int(col) + j < int(universeSizeX)) {
                     unsigned int row_ = unsigned(int(row) + i);
