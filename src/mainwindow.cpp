@@ -38,29 +38,34 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->algorithmBox->addItem("Flock");
     ui->algorithmBox->addItem("Seeds");
 
-    ui->stabilitySurviveAlgorithmBox->addItem("None");
-    ui->stabilitySurviveAlgorithmBox->addItem("Mean Power");
-    ui->stabilitySurviveAlgorithmBox->addItem("Mean PowerValue");
-    ui->stabilitySurviveAlgorithmBox->addItem("Power");
-    ui->stabilitySurviveAlgorithmBox->addItem("PowerValue");
+    ui->powerAlgorithmSurviveAlgorithmBox->addItem("None");
+    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Mean Power");
+    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Mean PowerValue");
+    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Power");
+    ui->powerAlgorithmSurviveAlgorithmBox->addItem("PowerValue");
 
-    ui->stabilitySurviveRuleBox->addItem("None");
-    ui->stabilitySurviveRuleBox->addItem("<");
-    ui->stabilitySurviveRuleBox->addItem(">");
-    ui->stabilitySurviveRuleBox->addItem("=");
-    ui->stabilitySurviveRuleBox->addItem("≠");
+    ui->powerAlgorithmSurviveRuleBox->addItem("None");
+    ui->powerAlgorithmSurviveRuleBox->addItem("<");
+    ui->powerAlgorithmSurviveRuleBox->addItem(">");
+    ui->powerAlgorithmSurviveRuleBox->addItem("=");
+    ui->powerAlgorithmSurviveRuleBox->addItem("≠");
 
-    ui->stabilityBornAlgorithmBox->addItem("None");
-    ui->stabilityBornAlgorithmBox->addItem("Mean Power");
-    ui->stabilityBornAlgorithmBox->addItem("Mean PowerValue");
-    ui->stabilityBornAlgorithmBox->addItem("Power");
-    ui->stabilityBornAlgorithmBox->addItem("PowerValue");
+    ui->powerAlgorithmBornAlgorithmBox->addItem("None");
+    ui->powerAlgorithmBornAlgorithmBox->addItem("Mean Power");
+    ui->powerAlgorithmBornAlgorithmBox->addItem("Mean PowerValue");
+    ui->powerAlgorithmBornAlgorithmBox->addItem("Power");
+    ui->powerAlgorithmBornAlgorithmBox->addItem("PowerValue");
 
-    ui->stabilityBornRuleBox->addItem("None");
-    ui->stabilityBornRuleBox->addItem("<");
-    ui->stabilityBornRuleBox->addItem(">");
-    ui->stabilityBornRuleBox->addItem("=");
-    ui->stabilityBornRuleBox->addItem("≠");
+    ui->powerAlgorithmBornRuleBox->addItem("None");
+    ui->powerAlgorithmBornRuleBox->addItem("<");
+    ui->powerAlgorithmBornRuleBox->addItem(">");
+    ui->powerAlgorithmBornRuleBox->addItem("=");
+    ui->powerAlgorithmBornRuleBox->addItem("≠");
+
+    ui->loopTypeComboBox->addItem("Standard");
+    ui->loopTypeComboBox->addItem("Inverse");
+    ui->loopTypeComboBox->addItem("Alternating");
+    ui->loopTypeComboBox->addItem("Random");
 }
 
 MainWindow::~MainWindow() {

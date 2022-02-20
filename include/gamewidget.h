@@ -78,7 +78,9 @@ public
     int interval();     // interval between generations
     void setInterval(int msec);     // set interval between generations
 
-    void setStability(int s);
+    unsigned int getLoopCount();
+
+    void setLoopType(int type);
 
     void setPowerLimit(int limit);
 
@@ -88,17 +90,17 @@ public
 
     void setAlgorithm(int a);
 
-    void setStabilityBornAlgorithm(int a);
+    void setpowerAlgorithmBornAlgorithm(int a);
 
-    void setStabilityBornRule(int a);
+    void setpowerAlgorithmBornRule(int a);
 
-    void setStabilityBorn(double a);
+    void setpowerAlgorithmBorn(double a);
 
-    void setStabilitySurviveAlgorithm(int a);
+    void setpowerAlgorithmSurviveAlgorithm(int a);
 
-    void setStabilitySurviveRule(int a);
+    void setpowerAlgorithmSurviveRule(int a);
 
-    void setStabilitySurvive(double a);
+    void setpowerAlgorithmSurvive(double a);
 
     void setWorkDone(double ratio);
 
@@ -148,7 +150,6 @@ private:
 
     unsigned int universeSizeX;     // width
     unsigned int universeSizeY;     // height
-    int stability;
     int powerLimit;
 
     unsigned int population;
@@ -158,12 +159,14 @@ private:
 
     int algorithm;
 
-    int stabilityBornAlgorithm;
-    int stabilityBornRule;
-    double stabilityBorn;
-    int stabilitySurviveAlgorithm;
-    int stabilitySurviveRule;
-    double stabilitySurvive;
+    int powerAlgorithmBornAlgorithm;
+    int powerAlgorithmBornRule;
+    double powerAlgorithmBorn;
+    int powerAlgorithmSurviveAlgorithm;
+    int powerAlgorithmSurviveRule;
+    double powerAlgorithmSurvive;
+
+    int loopType;
 
     bool
     isAlive(unsigned int index, unsigned int row, unsigned int col);     // return true if universe[k][j] accept rules

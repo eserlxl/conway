@@ -27,4 +27,6 @@ void MainWindow::updateProgressBar() {
     }
 
     ui->populationLabel->setText("Population: " + QString::number(game->getPopulation()));
+
+    ui->loopCountLabel->setText("Loop: " + QString::number(game->getLoopCount()));
 }

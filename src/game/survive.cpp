@@ -5,88 +5,92 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
     //unsigned int index = row * universeSizeX + col;
     unsigned int neighbour = neighbourhood(row, col);
 
+    // 3x3 boş kareleri boşa analiz etmiyoruz - Döngü Hızlandırıcısı :)
+    if (power[index] == 0 && universe[index] == false) {
+        return false;
+    }
+
     bool survive = false;
     bool born = false;
 
-    bool stabilitySurviveDecision = false;
-    bool stabilityBornDecision = false;
+    bool powerAlgorithmSurviveDecision = false;
+    bool powerAlgorithmBornDecision = false;
 
-    double stabilitySurviveParameter = 0;
+    double powerAlgorithmSurviveParameter = 0;
 
-    switch (stabilitySurviveAlgorithm) {
+    switch (powerAlgorithmSurviveAlgorithm) {
         case 1:
-            stabilitySurviveParameter = power[index] / double(neighbour);
+            powerAlgorithmSurviveParameter = power[index] / double(neighbour);
             break;
         case 2:
-            stabilitySurviveParameter = powerValue[index] / double(neighbour);
+            powerAlgorithmSurviveParameter = powerValue[index] / double(neighbour);
             break;
         case 3:
-            stabilitySurviveParameter = power[index];
+            powerAlgorithmSurviveParameter = power[index];
             break;
         case 4:
-            stabilitySurviveParameter = powerValue[index];
+            powerAlgorithmSurviveParameter = powerValue[index];
             break;
         default:
             break;
     }
 
-    if (stabilitySurviveAlgorithm) {
-        switch (stabilitySurviveRule) {
+    if (powerAlgorithmSurviveAlgorithm) {
+        switch (powerAlgorithmSurviveRule) {
             case 0:
-                stabilitySurviveDecision = stabilitySurviveParameter < stabilitySurvive;
+                powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter < powerAlgorithmSurvive;
                 break;
             case 1:
-                stabilitySurviveDecision = stabilitySurviveParameter > stabilitySurvive;
+                powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter > powerAlgorithmSurvive;
                 break;
             case 2:
-                stabilitySurviveDecision = fabs(stabilitySurviveParameter - stabilitySurvive) < 1e-15;
+                powerAlgorithmSurviveDecision = fabs(powerAlgorithmSurviveParameter - powerAlgorithmSurvive) < 1e-15;
                 break;
             case 3:
-                stabilitySurviveDecision = fabs(stabilitySurviveParameter - stabilitySurvive) > 1e-15;
+                powerAlgorithmSurviveDecision = fabs(powerAlgorithmSurviveParameter - powerAlgorithmSurvive) > 1e-15;
                 break;
             default:
                 break;
         }
     }
 
-    double stabilityBornParameter = 0;
+    double powerAlgorithmBornParameter = 0;
 
-    switch (stabilityBornAlgorithm) {
+    switch (powerAlgorithmBornAlgorithm) {
         case 1:
-            stabilityBornParameter = power[index] / double(neighbour);
+            powerAlgorithmBornParameter = power[index] / double(neighbour);
             break;
         case 2:
-            stabilityBornParameter = powerValue[index] / double(neighbour);
+            powerAlgorithmBornParameter = powerValue[index] / double(neighbour);
             break;
         case 3:
-            stabilityBornParameter = power[index];
+            powerAlgorithmBornParameter = power[index];
             break;
         case 4:
-            stabilityBornParameter = powerValue[index];
+            powerAlgorithmBornParameter = powerValue[index];
             break;
         default:
             break;
     }
 
-    if (stabilityBornAlgorithm) {
-        switch (stabilityBornRule) {
+    if (powerAlgorithmBornAlgorithm) {
+        switch (powerAlgorithmBornRule) {
             case 0:
-                stabilityBornDecision = stabilityBornParameter < stabilityBorn;
+                powerAlgorithmBornDecision = powerAlgorithmBornParameter < powerAlgorithmBorn;
                 break;
             case 1:
-                stabilityBornDecision = stabilityBornParameter > stabilityBorn;
+                powerAlgorithmBornDecision = powerAlgorithmBornParameter > powerAlgorithmBorn;
                 break;
             case 2:
-                stabilityBornDecision = fabs(stabilityBornParameter - stabilityBorn) < 1e-15;
+                powerAlgorithmBornDecision = fabs(powerAlgorithmBornParameter - powerAlgorithmBorn) < 1e-15;
                 break;
             case 3:
-                stabilityBornDecision = fabs(stabilityBornParameter - stabilityBorn) > 1e-15;
+                powerAlgorithmBornDecision = fabs(powerAlgorithmBornParameter - powerAlgorithmBorn) > 1e-15;
                 break;
             default:
                 break;
         }
     }
-
 
     // survive?
     if (universe[index] == true) {
@@ -159,13 +163,13 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
 
     if (population >= populationLimit) {
         born = false;
-        stabilityBornDecision = false;
+        powerAlgorithmBornDecision = false;
     }
 
     // survive?
     if (value[index] > 0) {
-        if ((population < populationLimit || loopCount - bornLoop[index] > 16) &&
-            (survive || stabilitySurviveDecision)) {
+        if ((population < populationLimit || loopCount - bornLoop[index] > 32) &&
+            (survive || powerAlgorithmSurviveDecision)) {
             if (nextValue[index] < powerLimit) {
                 nextValue[index]++;
             }
@@ -174,7 +178,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
         }
     }
         // born
-    else if ((bornLoop[index] == 0 || loopCount - bornLoop[index] > 16) && (born || stabilityBornDecision)) {
+    else if ((bornLoop[index] == 0 || loopCount - bornLoop[index] > 16) && (born || powerAlgorithmBornDecision)) {
         nextValue[index] = 1;
         bornLoop[index] = loopCount;
     }
@@ -202,30 +206,35 @@ void GameWidget::setAlgorithm(int a) {
     algorithm = a;
 }
 
-void GameWidget::setStability(int s) {
-    stability = s;
+void GameWidget::setpowerAlgorithmSurviveAlgorithm(int a) {
+    powerAlgorithmSurviveAlgorithm = a;
 }
 
-void GameWidget::setStabilitySurviveAlgorithm(int a) {
-    stabilitySurviveAlgorithm = a;
+void GameWidget::setpowerAlgorithmSurviveRule(int a) {
+    powerAlgorithmSurviveRule = a;
 }
 
-void GameWidget::setStabilitySurviveRule(int a) {
-    stabilitySurviveRule = a;
+void GameWidget::setpowerAlgorithmSurvive(double a) {
+    powerAlgorithmSurvive = a;
 }
 
-void GameWidget::setStabilitySurvive(double a) {
-    stabilitySurvive = a;
+void GameWidget::setpowerAlgorithmBornAlgorithm(int a) {
+    powerAlgorithmBornAlgorithm = a;
 }
 
-void GameWidget::setStabilityBornAlgorithm(int a) {
-    stabilityBornAlgorithm = a;
+void GameWidget::setpowerAlgorithmBornRule(int a) {
+    powerAlgorithmBornRule = a;
 }
 
-void GameWidget::setStabilityBornRule(int a) {
-    stabilityBornRule = a;
+void GameWidget::setpowerAlgorithmBorn(double a) {
+    powerAlgorithmBorn = a;
 }
 
-void GameWidget::setStabilityBorn(double a) {
-    stabilityBorn = a;
+void GameWidget::setLoopType(int type) {
+    loopType = type;
 }
+
+unsigned int GameWidget::getLoopCount() {
+    return loopCount;
+}
+

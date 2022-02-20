@@ -5,8 +5,9 @@
 
 GameWidget::GameWidget(QWidget *parent)
         : QWidget(parent), timer(new QTimer(this)), generations(-1), loopCount(0),
-          universeSizeX(50), universeSizeY(50), stability(0), powerLimit(1), population(0),
-          stabilityBornRule(0), stabilityBorn(0), stabilitySurviveRule(0), stabilitySurvive(0),
+          universeSizeX(50), universeSizeY(50), powerLimit(1), population(0),
+          powerAlgorithmBornRule(0), powerAlgorithmBorn(0), powerAlgorithmSurviveRule(0), powerAlgorithmSurvive(0),
+          loopType(0),
           workDone(0), elapsedTime(1) {
     timer->setInterval(300);
     m_masterColor = QColor(255, 255, 255);

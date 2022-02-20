@@ -6,7 +6,7 @@ void GameWidget::newGeneration() {
 
     loopCount++;
 
-    populationLimit = universeSizeX * universeSizeY / 32;
+    populationLimit = unsigned(sqrt(universeSizeX * universeSizeY));
 
     unChangedCell = 0;
 
@@ -19,78 +19,115 @@ void GameWidget::newGeneration() {
 
     unsigned int index = 0;
 
-    for (unsigned int i = 0; i < universeSizeY; i++) {
-        for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
-            checked[index] = 0;
-            index++;
-        }
-    }
+    switch (loopType) {
+        case 0:
+            index = 0;
+            population = 0;
+            for (unsigned int i = 0; i < universeSizeY; i++) {
+                for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
+                    //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
 
-    srand(loopCount);
+                    next[index] = isAlive(index, i, j);
 
-    index = 0;
-    population = 0;
-    unsigned int i = 0;
-    unsigned int j = 0;
-    while (1) {
-        //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
+                    if (next[index] == universe[index] &&
+                        nextValue[index] == value[index])
+                        unChangedCell++;
 
-        i = unsigned(rand());
-        j = unsigned(rand());
-
-        unsigned int k = (i % universeSizeY * universeSizeX + j % universeSizeX);
-
-        if (checked[k] == 0) {
-            next[k] = isAlive(k, i % universeSizeY, j % universeSizeX);
-
-            if (next[k] == universe[k] &&
-                nextValue[k] == value[k])
-                unChangedCell++;
-
-            index++;
-            checked[k] = 1;
-        }
-
-        if (index >= universeSizeY * universeSizeX) {
+                    index++;
+                }
+            }
             break;
-        }
+        case 1:
+            index = universeSizeX * universeSizeY - 1;
+            population = 0;
+            for (unsigned int i = 0; i < universeSizeY; i++) {
+                for (unsigned int j = 0; j < universeSizeX; j++) {
+                    //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
+
+                    next[index] = isAlive(index, universeSizeY - 1 - i, universeSizeX - 1 - j);
+
+                    if (next[index] == universe[index] &&
+                        nextValue[index] == value[index])
+                        unChangedCell++;
+
+                    index--;
+                }
+            }
+            break;
+        case 2:
+            if (loopCount % 2) {
+                index = 0;
+                population = 0;
+                for (unsigned int i = 0; i < universeSizeY; i++) {
+                    for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
+                        //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
+
+                        next[index] = isAlive(index, i, j);
+
+                        if (next[index] == universe[index] &&
+                            nextValue[index] == value[index])
+                            unChangedCell++;
+
+                        index++;
+                    }
+                }
+            } else {
+                index = universeSizeX * universeSizeY - 1;
+                population = 0;
+                for (unsigned int i = 0; i < universeSizeY; i++) {
+                    for (unsigned int j = 0; j < universeSizeX; j++) {
+                        //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
+
+                        next[index] = isAlive(index, universeSizeY - 1 - i, universeSizeX - 1 - j);
+
+                        if (next[index] == universe[index] &&
+                            nextValue[index] == value[index])
+                            unChangedCell++;
+
+                        index--;
+                    }
+                }
+            }
+            break;
+        case 3:
+            for (unsigned int i = 0; i < universeSizeY; i++) {
+                for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
+                    checked[index] = 0;
+                    index++;
+                }
+            }
+
+            srand(loopCount);
+
+            index = 0;
+            population = 0;
+            unsigned int i = 0;
+            unsigned int j = 0;
+            while (1) {
+                //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
+
+                i = unsigned(rand());
+                j = unsigned(rand());
+
+                unsigned int k = (i % universeSizeY * universeSizeX + j % universeSizeX);
+
+                if (checked[k] == 0) {
+                    next[k] = isAlive(k, i % universeSizeY, j % universeSizeX);
+
+                    if (next[k] == universe[k] &&
+                        nextValue[k] == value[k])
+                        unChangedCell++;
+
+                    index++;
+                    checked[k] = 1;
+                }
+
+                if (index >= universeSizeY * universeSizeX) {
+                    break;
+                }
+            }
+            break;
     }
-
-    /*if( loopCount % 2 )
-       {
-        index = 0;
-        population = 0;
-        for (unsigned int i = 0; i < universeSizeY; i++) {
-            for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
-                //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
-
-                next[index] = isAlive(index,i, j);
-
-                if (next[index] == universe[index] &&
-                    nextValue[index] == value[index])
-                    unChangedCell++;
-
-                index++;
-            }
-        }
-       }
-       else {
-        index = universeSizeX*universeSizeY-1;
-        population = 0;
-        for (unsigned int i = 0; i < universeSizeY; i++) {
-            for (unsigned int j = 0; j < universeSizeX; j++) {
-                //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
-
-                next[index] = isAlive(index,universeSizeY-1-i, universeSizeX-1-j);
-
-                if (next[index] == universe[index] &&
-                    nextValue[index] == value[index])
-                    unChangedCell++;
-
-                index--;
-            }
-        }
-       }*/
 
     index = 0;
     for (unsigned int i = 0; i < universeSizeY; i++) {

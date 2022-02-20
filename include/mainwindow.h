@@ -38,8 +38,6 @@ private
 
     on_rastgele_clicked();
 
-    void on_stabilityBox_valueChanged(int s);
-
     void on_loadData_clicked();
 
     void on_algorithmBox_currentIndexChanged(int index);
@@ -52,18 +50,19 @@ private
 
     void on_powerLimitBox_valueChanged(int powerLimit);
 
-    void on_stabilitySurviveAlgorithmBox_currentIndexChanged(int index);
+    void on_powerAlgorithmSurviveAlgorithmBox_currentIndexChanged(int index);
 
-    void on_stabilityBornAlgorithmBox_currentIndexChanged(int index);
+    void on_powerAlgorithmBornAlgorithmBox_currentIndexChanged(int index);
 
-    void on_stabilityBornBox_valueChanged(double value);
+    void on_powerAlgorithmBornBox_valueChanged(double value);
 
-    void on_stabilitySurviveBox_valueChanged(double value);
+    void on_powerAlgorithmSurviveBox_valueChanged(double value);
 
-    void on_stabilityBornRuleBox_currentIndexChanged(int index);
+    void on_powerAlgorithmBornRuleBox_currentIndexChanged(int index);
 
-    void on_stabilitySurviveRuleBox_currentIndexChanged(int index);
+    void on_powerAlgorithmSurviveRuleBox_currentIndexChanged(int index);
 
+    void on_loopTypeComboBox_currentIndexChanged(int index);
 private:
     Ui::MainWindow *ui;
     QColor currentColor;

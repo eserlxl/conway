@@ -63,7 +63,4 @@ void MainWindow::on_loadData_clicked() {
 
     ui->iterInterval->setValue(1); // ms
     game->setInterval(1);
-
-    ui->stabilityBox->setValue(72);
-    game->setStability(72);
 }
