@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
-        currentColor(QColor("#000")),
+        currentColor("#fff"),
         game(new GameWidget(this)) {
     ui->setupUi(this);
 
@@ -40,9 +40,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->powerAlgorithmSurviveAlgorithmBox->addItem("None");
     ui->powerAlgorithmSurviveAlgorithmBox->addItem("Mean Power");
-    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Mean PowerValue");
+    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Mean Power Value");
     ui->powerAlgorithmSurviveAlgorithmBox->addItem("Power");
-    ui->powerAlgorithmSurviveAlgorithmBox->addItem("PowerValue");
+    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Power Value");
 
     ui->powerAlgorithmSurviveRuleBox->addItem("None");
     ui->powerAlgorithmSurviveRuleBox->addItem("<");
@@ -52,9 +52,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->powerAlgorithmBornAlgorithmBox->addItem("None");
     ui->powerAlgorithmBornAlgorithmBox->addItem("Mean Power");
-    ui->powerAlgorithmBornAlgorithmBox->addItem("Mean PowerValue");
+    ui->powerAlgorithmBornAlgorithmBox->addItem("Mean Power Value");
     ui->powerAlgorithmBornAlgorithmBox->addItem("Power");
-    ui->powerAlgorithmBornAlgorithmBox->addItem("PowerValue");
+    ui->powerAlgorithmBornAlgorithmBox->addItem("Power Value");
 
     ui->powerAlgorithmBornRuleBox->addItem("None");
     ui->powerAlgorithmBornRuleBox->addItem("<");
