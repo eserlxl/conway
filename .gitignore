@@ -2,6 +2,9 @@
 bin
 lib
 
+# Other implementations
+life
+
 # Build Directories
 Release
 Debug
