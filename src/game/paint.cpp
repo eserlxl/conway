@@ -34,15 +34,15 @@ void GameWidget::paintGrid(QPainter &p) {
 }
 
 void GameWidget::paintUniverse(QPainter &p) {
-    int max_value = -1;
-    int min_value = 1e9;
+    int maXValue = -1;
+    int minValue = 1e9;
     for (unsigned int i = 0; i < universeSizeY; i++) {
         for (unsigned int j = 0; j < universeSizeX; j++) {
-            if (value[i * universeSizeX + j] < min_value) {
-                min_value = value[i * universeSizeX + j];
+            if (value[i * universeSizeX + j] < minValue) {
+                minValue = value[i * universeSizeX + j];
             }
-            if (value[i * universeSizeX + j] > max_value) {
-                max_value = value[i * universeSizeX + j];
+            if (value[i * universeSizeX + j] > maXValue) {
+                maXValue = value[i * universeSizeX + j];
             }
         }
     }
@@ -62,7 +62,7 @@ void GameWidget::paintUniverse(QPainter &p) {
                 int green = masterColor.green();
                 int blue = masterColor.blue();
 
-                int diff = max_value - min_value;
+                int diff = maXValue - minValue;
 
                 if (diff > 0) {
 
@@ -72,8 +72,8 @@ void GameWidget::paintUniverse(QPainter &p) {
 
                     int palette = limit(diff, 0, 255);
 
-                    double ratio1 = double(value[index] - min_value) / diff;
-                    double ratio2 = powerValue[index] / 8. / max_value * 4;
+                    double ratio1 = double(value[index] - minValue) / diff;
+                    double ratio2 = powerValue[index] / 8. / maXValue * 4;
                     double ratio3 = power[index] / 8. * 4;
 
                     int r = int(palette * limit(ratio1, 0., 1.));
