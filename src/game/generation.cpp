@@ -103,8 +103,7 @@ void GameWidget::newGeneration() {
             population = 0;
             unsigned int i = 0;
             unsigned int j = 0;
-            while (1) {
-                //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
+            while (index < universeSizeY * universeSizeX) {
 
                 i = unsigned(rand());
                 j = unsigned(rand());
@@ -120,10 +119,6 @@ void GameWidget::newGeneration() {
 
                     index++;
                     checked[k] = 1;
-                }
-
-                if (index >= universeSizeY * universeSizeX) {
-                    break;
                 }
             }
             break;
