@@ -4,12 +4,18 @@
 void MainWindow::on_randomUniverse_clicked() {
     for (int i = 0; i < game->cellSizeY(); i++) {
         for (int j = 0; j < game->cellSizeX(); j++) {
-            unsigned int index = unsigned(i * game->cellSizeX() + j);
+            unsigned int index = i * game->cellSizeX() + j;
 
-            game->value[index] = qrand() % (game->getPowerLimit() + 1);
-            game->initialValue[index] = game->value[index];
+            if (qrand() % 16 == 0) {
+                game->value[index] = qrand() % (game->getPowerLimit() + 1);
+                game->initialValue[index] = game->value[index];
 
-            game->universe[index] = game->value[index] > 0;
+                game->universe[index] = game->value[index] > 0;
+            } else {
+                game->value[index] = 0;
+                game->initialValue[index] = 0;
+                game->universe[index] = false;
+            }
         }
     }
 
