@@ -4,16 +4,43 @@ void GameWidget::startGame(const int &number) {
     generations = number;
     myTimer.start();
     timer->start();
+    statusBar->showMessage(tr("Simulation is running..."));
 }
 
 void GameWidget::stepGame() {
     generations = 1;
     myTimer.start();
     timer->start();
+    statusBar->showMessage(tr("Simulation advanced for only one step."));
 }
 
 void GameWidget::stopGame() {
     timer->stop();
+    statusBar->showMessage(tr("Simulation stopped."));
+}
+
+void GameWidget::clear() {
+    setWorkDone(0);
+    emit nextLoopStarts(true);
+
+    resetUniverse();
+
+    for (unsigned int i = 0; i < universeSizeY; i++) {
+        for (unsigned int j = 0; j < universeSizeX; j++) {
+            unsigned int index = i * universeSizeX + j;
+            universe[index] = false;
+            next[index] = false;
+            value[index] = 0;
+            nextValue[index] = 0;
+            initialValue[index] = 0;
+            power[index] = 0;
+            powerValue[index] = 0;
+            bornLoop[index] = 0;
+        }
+    }
+    emit gameEnds(true);
+    update();
+    statusBar->showMessage(tr("Ready"));
 }
 
 int GameWidget::interval() {

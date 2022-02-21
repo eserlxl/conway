@@ -1,34 +1,23 @@
 #include "include/gamewidget.h"
 
 void GameWidget::resetUniverse() {
-    delete[] universe;
-    delete[] value;
-    delete[] initialValue;
-    delete[] next;
-    delete[] nextValue;
-    delete[] power;
-    delete[] powerValue;
-    delete[] checked;
-    delete[] bornLoop;
-    universe = new bool[universeSizeX * universeSizeY];
-    value = new int[universeSizeX * universeSizeY];
-    initialValue = new int[universeSizeX * universeSizeY];
-    next = new bool[universeSizeX * universeSizeY];
-    nextValue = new int[universeSizeX * universeSizeY];
-    power = new int[universeSizeX * universeSizeY];
-    powerValue = new int[universeSizeX * universeSizeY];
-    checked = new int[universeSizeX * universeSizeY];
-    bornLoop = new unsigned int[universeSizeX * universeSizeY];
-    connect(timer, SIGNAL(timeout()), this, SLOT(newGeneration()));
-    memset(universe, false, sizeof(bool) * universeSizeX * universeSizeY);
-    memset(value, 0, sizeof(int) * universeSizeX * universeSizeY);
-    memset(initialValue, 0, sizeof(int) * universeSizeX * universeSizeY);
-    memset(next, false, sizeof(bool) * universeSizeX * universeSizeY);
-    memset(nextValue, 0, sizeof(int) * universeSizeX * universeSizeY);
-    memset(power, 0, sizeof(int) * universeSizeX * universeSizeY);
-    memset(powerValue, 0, sizeof(int) * universeSizeX * universeSizeY);
-    memset(checked, 0, sizeof(int) * universeSizeX * universeSizeY);
-    memset(bornLoop, 0, sizeof(unsigned int) * universeSizeX * universeSizeY);
+    universe.clear();
+    value.clear();
+    initialValue.clear();
+    next.clear();
+    nextValue.clear();
+    power.clear();
+    powerValue.clear();
+    bornLoop.clear();
+
+    universe.resize(universeSizeX * universeSizeY);
+    value.resize(universeSizeX * universeSizeY);
+    initialValue.resize(universeSizeX * universeSizeY);
+    next.resize(universeSizeX * universeSizeY);
+    nextValue.resize(universeSizeX * universeSizeY);
+    power.resize(universeSizeX * universeSizeY);
+    powerValue.resize(universeSizeX * universeSizeY);
+    bornLoop.resize(universeSizeX * universeSizeY);
 }
 
 int GameWidget::cellSizeX() {

@@ -14,7 +14,7 @@ void GameWidget::mousePressEvent(QMouseEvent *e) {
         if (!universe[index]) {
             value[index] = 0;
         }
-        if (universe[index] && value[index] < 254) {
+        if (universe[index] && value[index] < powerLimit) {
             value[index]++;
         }
 

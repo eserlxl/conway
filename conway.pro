@@ -7,7 +7,6 @@ TEMPLATE = app
 
 
 SOURCES += src/gamewidget.cpp \
-    src/game/clear.cpp \
     src/game/dump.cpp \
     src/game/generation.cpp \
     src/game/mouse.cpp \

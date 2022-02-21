@@ -29,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->gameLayout->setStretchFactor(ui->gameLayout, 8);
     ui->gameLayout->setStretchFactor(ui->setLayout, 2);
+
+    game->statusBar->showMessage(tr("Ready"));
+    ui->statusBarLayout->addWidget(game->statusBar);
+
     ui->gameLayout->addWidget(game);
 
     ui->algorithmBox->addItem("Life - John Conway");
@@ -66,6 +70,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->loopTypeComboBox->addItem("Inverse");
     ui->loopTypeComboBox->addItem("Alternating");
     ui->loopTypeComboBox->addItem("Random");
+    ui->loopTypeComboBox->setCurrentIndex(3);
 }
 
 MainWindow::~MainWindow() {

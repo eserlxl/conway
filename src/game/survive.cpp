@@ -168,8 +168,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
 
     // survive?
     if (value[index] > 0) {
-        if ((population < populationLimit || loopCount - bornLoop[index] > 32) &&
-            (survive || powerAlgorithmSurviveDecision)) {
+        if (population < populationLimit && (survive || powerAlgorithmSurviveDecision)) {
             if (nextValue[index] < powerLimit) {
                 nextValue[index]++;
             }
@@ -178,7 +177,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
         }
     }
         // born
-    else if ((bornLoop[index] == 0 || loopCount - bornLoop[index] > 16) && (born || powerAlgorithmBornDecision)) {
+    else if (born || powerAlgorithmBornDecision) {
         nextValue[index] = 1;
         bornLoop[index] = loopCount;
     }

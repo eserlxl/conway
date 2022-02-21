@@ -1,4 +1,6 @@
 #include "include/gamewidget.h"
+#include <iostream>
+#include <vector>
 
 void GameWidget::newGeneration() {
     if (generations < 0)
@@ -10,13 +12,6 @@ void GameWidget::newGeneration() {
 
     unChangedCell = 0;
 
-    //QRandomGenerator randomNumber;
-    //randomNumber.seed(loopCount);
-    //unsigned int shiftX = randomNumber.bounded(universeSizeX);
-    //unsigned int shiftY = randomNumber.bounded(universeSizeY);
-
-    //unsigned int index = shiftY*universeSizeY + shiftX;
-
     unsigned int index = 0;
 
     switch (loopType) {
@@ -25,7 +20,6 @@ void GameWidget::newGeneration() {
             population = 0;
             for (unsigned int i = 0; i < universeSizeY; i++) {
                 for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
-                    //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
 
                     next[index] = isAlive(index, i, j);
 
@@ -42,7 +36,6 @@ void GameWidget::newGeneration() {
             population = 0;
             for (unsigned int i = 0; i < universeSizeY; i++) {
                 for (unsigned int j = 0; j < universeSizeX; j++) {
-                    //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
 
                     next[index] = isAlive(index, universeSizeY - 1 - i, universeSizeX - 1 - j);
 
@@ -60,7 +53,6 @@ void GameWidget::newGeneration() {
                 population = 0;
                 for (unsigned int i = 0; i < universeSizeY; i++) {
                     for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
-                        //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
 
                         next[index] = isAlive(index, i, j);
 
@@ -76,7 +68,6 @@ void GameWidget::newGeneration() {
                 population = 0;
                 for (unsigned int i = 0; i < universeSizeY; i++) {
                     for (unsigned int j = 0; j < universeSizeX; j++) {
-                        //unsigned int index = (i%universeSizeY * universeSizeX + j%universeSizeX); // Sürekli aynı sırada kontrol etmiyoruz
 
                         next[index] = isAlive(index, universeSizeY - 1 - i, universeSizeX - 1 - j);
 
@@ -90,36 +81,39 @@ void GameWidget::newGeneration() {
             }
             break;
         case 3:
+            std::vector<unsigned> randomXList, randomYList;
+            randomXList.resize(universeSizeX * universeSizeY);
+            randomYList.resize(universeSizeX * universeSizeY);
             for (unsigned int i = 0; i < universeSizeY; i++) {
-                for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
-                    checked[index] = 0;
+                for (unsigned int j = 0; j < universeSizeX; j++) {
+                    randomXList[index] = i;
+                    randomYList[index] = j;
                     index++;
                 }
             }
 
             srand(loopCount);
 
-            index = 0;
             population = 0;
-            unsigned int i = 0;
-            unsigned int j = 0;
-            while (index < universeSizeY * universeSizeX) {
+            while (randomXList.size() > 0) {
 
-                i = unsigned(rand());
-                j = unsigned(rand());
+                unsigned randomIndex = rand() % randomXList.size();
+                unsigned i = randomXList[randomIndex];
+                unsigned j = randomYList[randomIndex];
 
-                unsigned int k = (i % universeSizeY * universeSizeX + j % universeSizeX);
+                unsigned k = i * universeSizeX + j;
 
-                if (checked[k] == 0) {
-                    next[k] = isAlive(k, i % universeSizeY, j % universeSizeX);
+                next[k] = isAlive(k, i, j);
 
-                    if (next[k] == universe[k] &&
-                        nextValue[k] == value[k])
-                        unChangedCell++;
+                if (next[k] == universe[k] &&
+                    nextValue[k] == value[k])
+                    unChangedCell++;
 
-                    index++;
-                    checked[k] = 1;
+                if (randomXList.size() == 1) {
+                    break;
                 }
+                randomXList.erase(randomXList.begin() + randomIndex);
+                randomYList.erase(randomYList.begin() + randomIndex);
             }
             break;
     }
@@ -163,14 +157,17 @@ void GameWidget::newGeneration() {
 
     emit nextLoopStarts(true);
 
-    if (0 && unChangedCell == universeSizeX * universeSizeY) {
+    if (unChangedCell == universeSizeX * universeSizeY) {
         /*QMessageBox::information(this,
                              tr("Game lost sense"),
                              tr("The End. Now game finished because all the next
            generations will be the same."), QMessageBox::Ok);*/
         qDebug() << "All the next generations will be the same.\n";
-        //stopGame();
-        //gameEnds(true);
+
+        stopGame();
+        gameEnds(true);
+
+        statusBar->showMessage(tr("All the next generations will be the same. Simulation stopped."));
         return;
     }
 
@@ -179,6 +176,7 @@ void GameWidget::newGeneration() {
     if (generations == 0) {
         stopGame();
         gameEnds(true);
+        statusBar->showMessage(tr("Iterations finished. Simulation stopped."));
         qDebug() << "Iterations finished.\n";
         /*QMessageBox::information(this, tr("Game finished."),
                                  tr("Iterations finished."), QMessageBox::Ok,

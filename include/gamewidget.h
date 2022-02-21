@@ -11,20 +11,25 @@
 #include <QRectF>
 #include <QTimer>
 #include <QRandomGenerator>
+#include <QStatusBar>
 #include <qmath.h>
+#include <iostream>
+#include <vector>
 
 class GameWidget : public QWidget {
     Q_OBJECT
 public:
     explicit GameWidget(QWidget *parent = 0);
 
+    QStatusBar *statusBar = nullptr;
+
     ~GameWidget();
 
-    bool *universe;     // map
-    int *initialValue;
-    int *value;     // map
-    int *power; // map
-    int *powerValue; // map
+    std::vector<bool> universe;
+    std::vector<int> initialValue;
+    std::vector<int> value;
+    std::vector<int> power;
+    std::vector<int> powerValue;
 
 protected:
     void paintEvent(QPaintEvent *);
@@ -143,10 +148,9 @@ private:
 
     unsigned int loopCount;
 
-    bool *next;     // map
-    int *nextValue;     // map
-    int *checked;
-    unsigned int *bornLoop;
+    std::vector<bool> next;
+    std::vector<int> nextValue;
+    std::vector<unsigned> bornLoop;
 
     unsigned int universeSizeX;     // width
     unsigned int universeSizeY;     // height
