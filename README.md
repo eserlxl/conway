@@ -23,7 +23,10 @@ It's a new Qt implementation of the Game of Life by Eser KUBALI.
 - Mazecritic
 - Flock
 - Seeds
-  
+
+## Usage
+Change master color according to your theme before running.
+ 
 # Inspired Version
 
 Thanks to tucnak for the original Qt implementation with license GPLv2.
