@@ -318,13 +318,13 @@
                </widget>
               </item>
               <item>
-               <widget class="QGroupBox" name="PowerAlgorithm">
+               <widget class="QGroupBox" name="Custom">
                 <layout class="QGridLayout" name="gridLayout_7">
                  <item row="1" column="2">
-                  <widget class="QComboBox" name="powerAlgorithmBornRuleBox"/>
+                  <widget class="QComboBox" name="customBornRuleBox"/>
                  </item>
                  <item row="3" column="1">
-                  <widget class="QComboBox" name="powerAlgorithmSurviveAlgorithmBox"/>
+                  <widget class="QComboBox" name="customSurviveAlgorithmBox"/>
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_31">
@@ -337,7 +337,7 @@
                   </widget>
                  </item>
                  <item row="1" column="1" rowspan="2">
-                  <widget class="QComboBox" name="powerAlgorithmBornAlgorithmBox"/>
+                  <widget class="QComboBox" name="customBornAlgorithmBox"/>
                  </item>
                  <item row="0" column="1">
                   <widget class="QLabel" name="label">
@@ -387,17 +387,17 @@
                   </widget>
                  </item>
                  <item row="3" column="2">
-                  <widget class="QComboBox" name="powerAlgorithmSurviveRuleBox"/>
+                  <widget class="QComboBox" name="customSurviveRuleBox"/>
                  </item>
                  <item row="1" column="3">
-                  <widget class="QDoubleSpinBox" name="powerAlgorithmBornBox">
+                  <widget class="QDoubleSpinBox" name="customBornBox">
                    <property name="maximum">
                     <double>255.000000000000000</double>
                    </property>
                   </widget>
                  </item>
                  <item row="3" column="3">
-                  <widget class="QDoubleSpinBox" name="powerAlgorithmSurviveBox">
+                  <widget class="QDoubleSpinBox" name="customSurviveBox">
                    <property name="maximum">
                     <double>255.000000000000000</double>
                    </property>

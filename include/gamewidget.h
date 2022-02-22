@@ -95,17 +95,17 @@ public
 
     void setAlgorithm(int a);
 
-    void setPowerAlgorithmBornAlgorithm(int a);
+    void setCustomBornAlgorithm(int a);
 
-    void setPowerAlgorithmBornRule(int a);
+    void setCustomBornRule(int a);
 
-    void setPowerAlgorithmBorn(double a);
+    void setCustomBorn(double a);
 
-    void setPowerAlgorithmSurviveAlgorithm(int a);
+    void setCustomSurviveAlgorithm(int a);
 
-    void setPowerAlgorithmSurviveRule(int a);
+    void setCustomSurviveRule(int a);
 
-    void setPowerAlgorithmSurvive(double a);
+    void setCustomSurvive(double a);
 
     void setWorkDone(double ratio);
 
@@ -163,12 +163,12 @@ private:
 
     int algorithm;
 
-    int powerAlgorithmBornAlgorithm;
-    int powerAlgorithmBornRule;
-    double powerAlgorithmBorn;
-    int powerAlgorithmSurviveAlgorithm;
-    int powerAlgorithmSurviveRule;
-    double powerAlgorithmSurvive;
+    int customBornAlgorithm;
+    int customBornRule;
+    double customBorn;
+    int customSurviveAlgorithm;
+    int customSurviveRule;
+    double customSurvive;
 
     int loopType;
 

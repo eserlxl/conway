@@ -13,11 +13,11 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
     bool survive = false;
     bool born = false;
 
-    bool powerAlgorithmSurviveDecision = false;
-    bool powerAlgorithmBornDecision = false;
+    bool customSurviveDecision = false;
+    bool customBornDecision = false;
 
-    double powerAlgorithmSurviveParameter = 0;
-    double powerAlgorithmBornParameter = 0;
+    double customSurviveParameter = 0;
+    double customBornParameter = 0;
 
     // survive?
     if (universe[index] == true) {
@@ -54,44 +54,42 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
                 }
                 break;
             case 7: // Custom
-                switch (powerAlgorithmSurviveAlgorithm) {
+                switch (customSurviveAlgorithm) {
                     case 1:
-                        powerAlgorithmSurviveParameter = power[index] / double(neighbour);
+                        customSurviveParameter = power[index] / double(neighbour);
                         break;
                     case 2:
-                        powerAlgorithmSurviveParameter = powerValue[index] / double(neighbour);
+                        customSurviveParameter = powerValue[index] / double(neighbour);
                         break;
                     case 3:
-                        powerAlgorithmSurviveParameter = power[index];
+                        customSurviveParameter = power[index];
                         break;
                     case 4:
-                        powerAlgorithmSurviveParameter = powerValue[index];
+                        customSurviveParameter = powerValue[index];
                         break;
                     default:
                         break;
                 }
 
-                if (powerAlgorithmSurviveAlgorithm) {
-                    switch (powerAlgorithmSurviveRule) {
+                if (customSurviveAlgorithm) {
+                    switch (customSurviveRule) {
                         case 0:
-                            powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter < powerAlgorithmSurvive;
+                            customSurviveDecision = customSurviveParameter < customSurvive;
                             break;
                         case 1:
-                            powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter > powerAlgorithmSurvive;
+                            customSurviveDecision = customSurviveParameter > customSurvive;
                             break;
                         case 2:
-                            powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter <= powerAlgorithmSurvive;
+                            customSurviveDecision = customSurviveParameter <= customSurvive;
                             break;
                         case 3:
-                            powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter >= powerAlgorithmSurvive;
+                            customSurviveDecision = customSurviveParameter >= customSurvive;
                             break;
                         case 4:
-                            powerAlgorithmSurviveDecision =
-                                    fabs(powerAlgorithmSurviveParameter - powerAlgorithmSurvive) < 1e-15;
+                            customSurviveDecision = fabs(customSurviveParameter - customSurvive) < 1e-15;
                             break;
                         case 5:
-                            powerAlgorithmSurviveDecision =
-                                    fabs(powerAlgorithmSurviveParameter - powerAlgorithmSurvive) > 1e-15;
+                            customSurviveDecision = fabs(customSurviveParameter - customSurvive) > 1e-15;
                             break;
                         default:
                             break;
@@ -141,42 +139,42 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
                 }
                 break;
             case 7: // Custom
-                switch (powerAlgorithmBornAlgorithm) {
+                switch (customBornAlgorithm) {
                     case 1:
-                        powerAlgorithmBornParameter = power[index] / double(neighbour);
+                        customBornParameter = power[index] / double(neighbour);
                         break;
                     case 2:
-                        powerAlgorithmBornParameter = powerValue[index] / double(neighbour);
+                        customBornParameter = powerValue[index] / double(neighbour);
                         break;
                     case 3:
-                        powerAlgorithmBornParameter = power[index];
+                        customBornParameter = power[index];
                         break;
                     case 4:
-                        powerAlgorithmBornParameter = powerValue[index];
+                        customBornParameter = powerValue[index];
                         break;
                     default:
                         break;
                 }
 
-                if (powerAlgorithmBornAlgorithm) {
-                    switch (powerAlgorithmBornRule) {
+                if (customBornAlgorithm) {
+                    switch (customBornRule) {
                         case 0:
-                            powerAlgorithmBornDecision = powerAlgorithmBornParameter < powerAlgorithmBorn;
+                            customBornDecision = customBornParameter < customBorn;
                             break;
                         case 1:
-                            powerAlgorithmBornDecision = powerAlgorithmBornParameter > powerAlgorithmBorn;
+                            customBornDecision = customBornParameter > customBorn;
                             break;
                         case 2:
-                            powerAlgorithmBornDecision = powerAlgorithmBornParameter <= powerAlgorithmBorn;
+                            customBornDecision = customBornParameter <= customBorn;
                             break;
                         case 3:
-                            powerAlgorithmBornDecision = powerAlgorithmBornParameter >= powerAlgorithmBorn;
+                            customBornDecision = customBornParameter >= customBorn;
                             break;
                         case 4:
-                            powerAlgorithmBornDecision = fabs(powerAlgorithmBornParameter - powerAlgorithmBorn) < 1e-15;
+                            customBornDecision = fabs(customBornParameter - customBorn) < 1e-15;
                             break;
                         case 5:
-                            powerAlgorithmBornDecision = fabs(powerAlgorithmBornParameter - powerAlgorithmBorn) > 1e-15;
+                            customBornDecision = fabs(customBornParameter - customBorn) > 1e-15;
                             break;
                         default:
                             break;
@@ -188,12 +186,12 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
 
     if (population >= populationLimit) {
         born = false;
-        powerAlgorithmBornDecision = false;
+        customBornDecision = false;
     }
 
     // survive?
     if (value[index] > 0) {
-        if (population < populationLimit && (survive || powerAlgorithmSurviveDecision)) {
+        if (population <= populationLimit && (survive || customSurviveDecision)) {
             if (nextValue[index] < powerLimit) {
                 nextValue[index]++;
             }
@@ -202,7 +200,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
         }
     }
         // born
-    else if (born || powerAlgorithmBornDecision) {
+    else if (born || customBornDecision) {
         nextValue[index] = 1;
         bornLoop[index] = loopCount;
     }
@@ -230,28 +228,28 @@ void GameWidget::setAlgorithm(int a) {
     algorithm = a;
 }
 
-void GameWidget::setPowerAlgorithmSurviveAlgorithm(int a) {
-    powerAlgorithmSurviveAlgorithm = a;
+void GameWidget::setCustomSurviveAlgorithm(int a) {
+    customSurviveAlgorithm = a;
 }
 
-void GameWidget::setPowerAlgorithmSurviveRule(int a) {
-    powerAlgorithmSurviveRule = a;
+void GameWidget::setCustomSurviveRule(int a) {
+    customSurviveRule = a;
 }
 
-void GameWidget::setPowerAlgorithmSurvive(double a) {
-    powerAlgorithmSurvive = a;
+void GameWidget::setCustomSurvive(double a) {
+    customSurvive = a;
 }
 
-void GameWidget::setPowerAlgorithmBornAlgorithm(int a) {
-    powerAlgorithmBornAlgorithm = a;
+void GameWidget::setCustomBornAlgorithm(int a) {
+    customBornAlgorithm = a;
 }
 
-void GameWidget::setPowerAlgorithmBornRule(int a) {
-    powerAlgorithmBornRule = a;
+void GameWidget::setCustomBornRule(int a) {
+    customBornRule = a;
 }
 
-void GameWidget::setPowerAlgorithmBorn(double a) {
-    powerAlgorithmBorn = a;
+void GameWidget::setCustomBorn(double a) {
+    customBorn = a;
 }
 
 void GameWidget::setLoopType(int type) {

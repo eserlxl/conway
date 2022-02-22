@@ -45,33 +45,33 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->algorithmBox->addItem("Custom");
     ui->algorithmBox->setCurrentIndex(0);
 
-    ui->powerAlgorithmSurviveAlgorithmBox->addItem("None");
-    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Mean Power");
-    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Mean Power Value");
-    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Power");
-    ui->powerAlgorithmSurviveAlgorithmBox->addItem("Power Value");
+    ui->customSurviveAlgorithmBox->addItem("None");
+    ui->customSurviveAlgorithmBox->addItem("Mean Power");
+    ui->customSurviveAlgorithmBox->addItem("Mean Power Value");
+    ui->customSurviveAlgorithmBox->addItem("Power");
+    ui->customSurviveAlgorithmBox->addItem("Power Value");
 
-    ui->powerAlgorithmSurviveRuleBox->addItem("None");
-    ui->powerAlgorithmSurviveRuleBox->addItem("<");
-    ui->powerAlgorithmSurviveRuleBox->addItem(">");
-    ui->powerAlgorithmSurviveRuleBox->addItem("≤");
-    ui->powerAlgorithmSurviveRuleBox->addItem("≥");
-    ui->powerAlgorithmSurviveRuleBox->addItem("=");
-    ui->powerAlgorithmSurviveRuleBox->addItem("≠");
+    ui->customSurviveRuleBox->addItem("None");
+    ui->customSurviveRuleBox->addItem("<");
+    ui->customSurviveRuleBox->addItem(">");
+    ui->customSurviveRuleBox->addItem("≤");
+    ui->customSurviveRuleBox->addItem("≥");
+    ui->customSurviveRuleBox->addItem("=");
+    ui->customSurviveRuleBox->addItem("≠");
 
-    ui->powerAlgorithmBornAlgorithmBox->addItem("None");
-    ui->powerAlgorithmBornAlgorithmBox->addItem("Mean Power");
-    ui->powerAlgorithmBornAlgorithmBox->addItem("Mean Power Value");
-    ui->powerAlgorithmBornAlgorithmBox->addItem("Power");
-    ui->powerAlgorithmBornAlgorithmBox->addItem("Power Value");
+    ui->customBornAlgorithmBox->addItem("None");
+    ui->customBornAlgorithmBox->addItem("Mean Power");
+    ui->customBornAlgorithmBox->addItem("Mean Power Value");
+    ui->customBornAlgorithmBox->addItem("Power");
+    ui->customBornAlgorithmBox->addItem("Power Value");
 
-    ui->powerAlgorithmBornRuleBox->addItem("None");
-    ui->powerAlgorithmBornRuleBox->addItem("<");
-    ui->powerAlgorithmBornRuleBox->addItem(">");
-    ui->powerAlgorithmBornRuleBox->addItem("≤");
-    ui->powerAlgorithmBornRuleBox->addItem("≥");
-    ui->powerAlgorithmBornRuleBox->addItem("=");
-    ui->powerAlgorithmBornRuleBox->addItem("≠");
+    ui->customBornRuleBox->addItem("None");
+    ui->customBornRuleBox->addItem("<");
+    ui->customBornRuleBox->addItem(">");
+    ui->customBornRuleBox->addItem("≤");
+    ui->customBornRuleBox->addItem("≥");
+    ui->customBornRuleBox->addItem("=");
+    ui->customBornRuleBox->addItem("≠");
 
     ui->loopTypeComboBox->addItem("Standard");
     ui->loopTypeComboBox->addItem("Inverse");

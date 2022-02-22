@@ -8,28 +8,28 @@ void MainWindow::on_powerLimitBox_valueChanged(int powerLimit) {
     game->setPowerLimit(powerLimit);
 }
 
-void MainWindow::on_powerAlgorithmBornAlgorithmBox_currentIndexChanged(int index) {
-    game->setPowerAlgorithmBornAlgorithm(index);
+void MainWindow::on_customBornAlgorithmBox_currentIndexChanged(int index) {
+    game->setCustomBornAlgorithm(index);
 }
 
-void MainWindow::on_powerAlgorithmBornBox_valueChanged(double value) {
-    game->setPowerAlgorithmBorn(value);
+void MainWindow::on_customBornBox_valueChanged(double value) {
+    game->setCustomBorn(value);
 }
 
-void MainWindow::on_powerAlgorithmSurviveAlgorithmBox_currentIndexChanged(int index) {
-    game->setPowerAlgorithmSurviveAlgorithm(index);
+void MainWindow::on_customSurviveAlgorithmBox_currentIndexChanged(int index) {
+    game->setCustomSurviveAlgorithm(index);
 }
 
-void MainWindow::on_powerAlgorithmSurviveBox_valueChanged(double value) {
-    game->setPowerAlgorithmSurvive(value);
+void MainWindow::on_customSurviveBox_valueChanged(double value) {
+    game->setCustomSurvive(value);
 }
 
-void MainWindow::on_powerAlgorithmBornRuleBox_currentIndexChanged(int index) {
-    game->setPowerAlgorithmBornRule(index);
+void MainWindow::on_customBornRuleBox_currentIndexChanged(int index) {
+    game->setCustomBornRule(index);
 }
 
-void MainWindow::on_powerAlgorithmSurviveRuleBox_currentIndexChanged(int index) {
-    game->setPowerAlgorithmSurviveRule(index);
+void MainWindow::on_customSurviveRuleBox_currentIndexChanged(int index) {
+    game->setCustomSurviveRule(index);
 }
 
 void MainWindow::on_loopTypeComboBox_currentIndexChanged(int index) {

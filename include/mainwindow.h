@@ -50,19 +50,20 @@ private
 
     void on_powerLimitBox_valueChanged(int powerLimit);
 
-    void on_powerAlgorithmSurviveAlgorithmBox_currentIndexChanged(int index);
+    void on_customSurviveAlgorithmBox_currentIndexChanged(int index);
 
-    void on_powerAlgorithmBornAlgorithmBox_currentIndexChanged(int index);
+    void on_customBornAlgorithmBox_currentIndexChanged(int index);
 
-    void on_powerAlgorithmBornBox_valueChanged(double value);
+    void on_customBornBox_valueChanged(double value);
 
-    void on_powerAlgorithmSurviveBox_valueChanged(double value);
+    void on_customSurviveBox_valueChanged(double value);
 
-    void on_powerAlgorithmBornRuleBox_currentIndexChanged(int index);
+    void on_customBornRuleBox_currentIndexChanged(int index);
 
-    void on_powerAlgorithmSurviveRuleBox_currentIndexChanged(int index);
+    void on_customSurviveRuleBox_currentIndexChanged(int index);
 
     void on_loopTypeComboBox_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     QColor currentColor;
