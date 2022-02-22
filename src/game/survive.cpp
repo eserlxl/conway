@@ -73,22 +73,22 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
 
                 if (customSurviveAlgorithm) {
                     switch (customSurviveRule) {
-                        case 0:
+                        case 1:
                             customSurviveDecision = customSurviveParameter < customSurvive;
                             break;
-                        case 1:
+                        case 2:
                             customSurviveDecision = customSurviveParameter > customSurvive;
                             break;
-                        case 2:
+                        case 3:
                             customSurviveDecision = customSurviveParameter <= customSurvive;
                             break;
-                        case 3:
+                        case 4:
                             customSurviveDecision = customSurviveParameter >= customSurvive;
                             break;
-                        case 4:
+                        case 5:
                             customSurviveDecision = fabs(customSurviveParameter - customSurvive) < 1e-15;
                             break;
-                        case 5:
+                        case 6:
                             customSurviveDecision = fabs(customSurviveParameter - customSurvive) > 1e-15;
                             break;
                         default:
@@ -158,22 +158,22 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
 
                 if (customBornAlgorithm) {
                     switch (customBornRule) {
-                        case 0:
+                        case 1:
                             customBornDecision = customBornParameter < customBorn;
                             break;
-                        case 1:
+                        case 2:
                             customBornDecision = customBornParameter > customBorn;
                             break;
-                        case 2:
+                        case 3:
                             customBornDecision = customBornParameter <= customBorn;
                             break;
-                        case 3:
+                        case 4:
                             customBornDecision = customBornParameter >= customBorn;
                             break;
-                        case 4:
+                        case 5:
                             customBornDecision = fabs(customBornParameter - customBorn) < 1e-15;
                             break;
-                        case 5:
+                        case 6:
                             customBornDecision = fabs(customBornParameter - customBorn) > 1e-15;
                             break;
                         default:
