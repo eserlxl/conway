@@ -184,11 +184,6 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
         }
     }
 
-    if (population >= populationLimit) {
-        born = false;
-        customBornDecision = false;
-    }
-
     // survive?
     if (value[index] > 0) {
         if (population <= populationLimit && (survive || customSurviveDecision)) {
@@ -200,7 +195,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
         }
     }
         // born
-    else if (born || customBornDecision) {
+    else if (population < populationLimit && (born || customBornDecision)) {
         nextValue[index] = 1;
         bornLoop[index] = loopCount;
     }
@@ -209,7 +204,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
         population++;
     }
 
-    return nextValue[index] > 0;
+    return population <= populationLimit && nextValue[index] > 0;
 }
 
 unsigned int GameWidget::getPopulation() {
