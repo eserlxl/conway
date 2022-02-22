@@ -41,6 +41,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->algorithmBox->addItem("Mazecritic");
     ui->algorithmBox->addItem("Flock");
     ui->algorithmBox->addItem("Seeds");
+    ui->algorithmBox->addItem("Colony");
+    ui->algorithmBox->addItem("Custom");
+    ui->algorithmBox->setCurrentIndex(0);
 
     ui->powerAlgorithmSurviveAlgorithmBox->addItem("None");
     ui->powerAlgorithmSurviveAlgorithmBox->addItem("Mean Power");
@@ -51,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->powerAlgorithmSurviveRuleBox->addItem("None");
     ui->powerAlgorithmSurviveRuleBox->addItem("<");
     ui->powerAlgorithmSurviveRuleBox->addItem(">");
+    ui->powerAlgorithmSurviveRuleBox->addItem("≤");
+    ui->powerAlgorithmSurviveRuleBox->addItem("≥");
     ui->powerAlgorithmSurviveRuleBox->addItem("=");
     ui->powerAlgorithmSurviveRuleBox->addItem("≠");
 
@@ -63,6 +68,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->powerAlgorithmBornRuleBox->addItem("None");
     ui->powerAlgorithmBornRuleBox->addItem("<");
     ui->powerAlgorithmBornRuleBox->addItem(">");
+    ui->powerAlgorithmBornRuleBox->addItem("≤");
+    ui->powerAlgorithmBornRuleBox->addItem("≥");
     ui->powerAlgorithmBornRuleBox->addItem("=");
     ui->powerAlgorithmBornRuleBox->addItem("≠");
 

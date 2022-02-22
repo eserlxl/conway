@@ -17,80 +17,7 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
     bool powerAlgorithmBornDecision = false;
 
     double powerAlgorithmSurviveParameter = 0;
-
-    switch (powerAlgorithmSurviveAlgorithm) {
-        case 1:
-            powerAlgorithmSurviveParameter = power[index] / double(neighbour);
-            break;
-        case 2:
-            powerAlgorithmSurviveParameter = powerValue[index] / double(neighbour);
-            break;
-        case 3:
-            powerAlgorithmSurviveParameter = power[index];
-            break;
-        case 4:
-            powerAlgorithmSurviveParameter = powerValue[index];
-            break;
-        default:
-            break;
-    }
-
-    if (powerAlgorithmSurviveAlgorithm) {
-        switch (powerAlgorithmSurviveRule) {
-            case 0:
-                powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter < powerAlgorithmSurvive;
-                break;
-            case 1:
-                powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter > powerAlgorithmSurvive;
-                break;
-            case 2:
-                powerAlgorithmSurviveDecision = fabs(powerAlgorithmSurviveParameter - powerAlgorithmSurvive) < 1e-15;
-                break;
-            case 3:
-                powerAlgorithmSurviveDecision = fabs(powerAlgorithmSurviveParameter - powerAlgorithmSurvive) > 1e-15;
-                break;
-            default:
-                break;
-        }
-    }
-
     double powerAlgorithmBornParameter = 0;
-
-    switch (powerAlgorithmBornAlgorithm) {
-        case 1:
-            powerAlgorithmBornParameter = power[index] / double(neighbour);
-            break;
-        case 2:
-            powerAlgorithmBornParameter = powerValue[index] / double(neighbour);
-            break;
-        case 3:
-            powerAlgorithmBornParameter = power[index];
-            break;
-        case 4:
-            powerAlgorithmBornParameter = powerValue[index];
-            break;
-        default:
-            break;
-    }
-
-    if (powerAlgorithmBornAlgorithm) {
-        switch (powerAlgorithmBornRule) {
-            case 0:
-                powerAlgorithmBornDecision = powerAlgorithmBornParameter < powerAlgorithmBorn;
-                break;
-            case 1:
-                powerAlgorithmBornDecision = powerAlgorithmBornParameter > powerAlgorithmBorn;
-                break;
-            case 2:
-                powerAlgorithmBornDecision = fabs(powerAlgorithmBornParameter - powerAlgorithmBorn) < 1e-15;
-                break;
-            case 3:
-                powerAlgorithmBornDecision = fabs(powerAlgorithmBornParameter - powerAlgorithmBorn) > 1e-15;
-                break;
-            default:
-                break;
-        }
-    }
 
     // survive?
     if (universe[index] == true) {
@@ -121,6 +48,56 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
                 }
                 break;
                 // There is no survive rule for Seeds!
+            case 6: // Colony
+                if (power[index] >= 2) {
+                    survive = true;
+                }
+                break;
+            case 7: // Custom
+                switch (powerAlgorithmSurviveAlgorithm) {
+                    case 1:
+                        powerAlgorithmSurviveParameter = power[index] / double(neighbour);
+                        break;
+                    case 2:
+                        powerAlgorithmSurviveParameter = powerValue[index] / double(neighbour);
+                        break;
+                    case 3:
+                        powerAlgorithmSurviveParameter = power[index];
+                        break;
+                    case 4:
+                        powerAlgorithmSurviveParameter = powerValue[index];
+                        break;
+                    default:
+                        break;
+                }
+
+                if (powerAlgorithmSurviveAlgorithm) {
+                    switch (powerAlgorithmSurviveRule) {
+                        case 0:
+                            powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter < powerAlgorithmSurvive;
+                            break;
+                        case 1:
+                            powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter > powerAlgorithmSurvive;
+                            break;
+                        case 2:
+                            powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter <= powerAlgorithmSurvive;
+                            break;
+                        case 3:
+                            powerAlgorithmSurviveDecision = powerAlgorithmSurviveParameter >= powerAlgorithmSurvive;
+                            break;
+                        case 4:
+                            powerAlgorithmSurviveDecision =
+                                    fabs(powerAlgorithmSurviveParameter - powerAlgorithmSurvive) < 1e-15;
+                            break;
+                        case 5:
+                            powerAlgorithmSurviveDecision =
+                                    fabs(powerAlgorithmSurviveParameter - powerAlgorithmSurvive) > 1e-15;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                break;
             default:
                 break;
         }
@@ -156,6 +133,54 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
             case 5: // Seeds
                 if (power[index] == 2) {
                     born = true;
+                }
+                break;
+            case 6: // Colony
+                if (power[index] >= 3) {
+                    born = true;
+                }
+                break;
+            case 7: // Custom
+                switch (powerAlgorithmBornAlgorithm) {
+                    case 1:
+                        powerAlgorithmBornParameter = power[index] / double(neighbour);
+                        break;
+                    case 2:
+                        powerAlgorithmBornParameter = powerValue[index] / double(neighbour);
+                        break;
+                    case 3:
+                        powerAlgorithmBornParameter = power[index];
+                        break;
+                    case 4:
+                        powerAlgorithmBornParameter = powerValue[index];
+                        break;
+                    default:
+                        break;
+                }
+
+                if (powerAlgorithmBornAlgorithm) {
+                    switch (powerAlgorithmBornRule) {
+                        case 0:
+                            powerAlgorithmBornDecision = powerAlgorithmBornParameter < powerAlgorithmBorn;
+                            break;
+                        case 1:
+                            powerAlgorithmBornDecision = powerAlgorithmBornParameter > powerAlgorithmBorn;
+                            break;
+                        case 2:
+                            powerAlgorithmBornDecision = powerAlgorithmBornParameter <= powerAlgorithmBorn;
+                            break;
+                        case 3:
+                            powerAlgorithmBornDecision = powerAlgorithmBornParameter >= powerAlgorithmBorn;
+                            break;
+                        case 4:
+                            powerAlgorithmBornDecision = fabs(powerAlgorithmBornParameter - powerAlgorithmBorn) < 1e-15;
+                            break;
+                        case 5:
+                            powerAlgorithmBornDecision = fabs(powerAlgorithmBornParameter - powerAlgorithmBorn) > 1e-15;
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 break;
         }
