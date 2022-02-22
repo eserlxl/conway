@@ -19,7 +19,7 @@ void GameWidget::newGeneration() {
             index = 0;
             population = 0;
             for (unsigned int i = 0; i < universeSizeY; i++) {
-                for (unsigned int j = 0; j < 0 + universeSizeX; j++) {
+                for (unsigned int j = 0; j < universeSizeX; j++) {
 
                     next[index] = isAlive(index, i, j);
 
@@ -109,9 +109,6 @@ void GameWidget::newGeneration() {
                     nextValue[k] == value[k])
                     unChangedCell++;
 
-                if (randomXList.size() == 1) {
-                    break;
-                }
                 randomXList.erase(randomXList.begin() + randomIndex);
                 randomYList.erase(randomYList.begin() + randomIndex);
             }
