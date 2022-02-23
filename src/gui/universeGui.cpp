@@ -2,9 +2,9 @@
 #include "ui_mainwindow.h"
 
 void MainWindow::on_randomUniverse_clicked() {
-    for (int i = 0; i < game->cellSizeY(); i++) {
-        for (int j = 0; j < game->cellSizeX(); j++) {
-            unsigned int index = i * game->cellSizeX() + j;
+    for (int i = 0; i < game->getCellSizeY(); i++) {
+        for (int j = 0; j < game->getCellSizeX(); j++) {
+            unsigned int index = i * game->getCellSizeX() + j;
 
             if (qrand() % 16 == 0) {
                 game->value[index] = qrand() % (game->getPowerLimit() + 1);

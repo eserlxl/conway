@@ -20,11 +20,19 @@ void GameWidget::resetUniverse() {
     bornLoop.resize(universeSizeX * universeSizeY);
 }
 
-int GameWidget::cellSizeX() {
+int GameWidget::getCellWidth() {
+    return (double) width() / universeSizeX;
+}
+
+int GameWidget::getCellHeight() {
+    return (double) height() / universeSizeY;
+}
+
+int GameWidget::getCellSizeX() {
     return int(universeSizeX);
 }
 
-int GameWidget::cellSizeY() {
+int GameWidget::getCellSizeY() {
     return int(universeSizeY);
 }
 

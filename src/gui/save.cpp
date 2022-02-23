@@ -11,7 +11,7 @@ void MainWindow::saveGame() {
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate))
         return;
-    QString s = QString::number(game->cellSizeX()) + " " + QString::number(game->cellSizeY()) + "\n";
+    QString s = QString::number(game->getCellSizeX()) + " " + QString::number(game->getCellSizeY()) + "\n";
 
     s.append(QString::number(game->getPowerLimit()) + "\n");
     QColor masterColor = game->getMasterColor();
@@ -48,8 +48,8 @@ void MainWindow::saveGame() {
     if (!file6.open(QIODevice::WriteOnly))
         return;
 
-    unsigned int universeSizeX = unsigned(game->cellSizeX());
-    unsigned int universeSizeY = unsigned(game->cellSizeY());
+    unsigned int universeSizeX = unsigned(game->getCellSizeX());
+    unsigned int universeSizeY = unsigned(game->getCellSizeY());
 
     for (unsigned int i = 0; i < universeSizeY; i++) {
         for (unsigned int j = 0; j < universeSizeX; j++) {

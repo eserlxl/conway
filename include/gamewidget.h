@@ -77,9 +77,13 @@ public
 
     void resize(const int &x, const int &y);
 
-    int cellSizeX();
+    int getCellSizeX();
 
-    int cellSizeY();
+    int getCellSizeY();
+
+    int getCellWidth();
+
+    int getCellHeight();
 
     int interval();     // interval between generations
     void setInterval(int msec);     // set interval between generations

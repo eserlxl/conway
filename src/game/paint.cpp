@@ -16,19 +16,21 @@ QColor GameWidget::getMasterColor() {
 }
 
 void GameWidget::paintGrid(QPainter &p) {
-    QRect borders(0, 0, width() - 1, height() - 1); // borders of the universe
+
+    unsigned cellWidth = getCellWidth();
+    unsigned cellHeight = getCellHeight();
+
+    QRect borders(0, 0, universeSizeX * cellWidth - 1, universeSizeY * cellHeight - 1); // borders of the universe
     QColor gridColor = m_masterColor; // color of the grid
     gridColor.setAlpha(10); // must be lighter than main color
     p.setPen(gridColor);
-    double cellWidth = floor(double(width()) / universeSizeX) + 1;
-    double cellHeight = floor(double(height()) / universeSizeY) + 1;
 
-    for (unsigned k = 0; k < width(); k += cellWidth) {
-        p.drawLine(int(k), 0, int(k), height());
+    for (unsigned k = 0; k < universeSizeX * cellWidth; k += cellWidth) {
+        p.drawLine(k, 0, k, universeSizeY * cellHeight);
     }
 
-    for (unsigned k = 0; k < height(); k += cellHeight) {
-        p.drawLine(0, int(k), width(), int(k));
+    for (unsigned k = 0; k < universeSizeY * cellHeight; k += cellHeight) {
+        p.drawLine(0, k, universeSizeX * cellWidth, k);
     }
     p.drawRect(borders);
 }
@@ -46,8 +48,8 @@ void GameWidget::paintUniverse(QPainter &p) {
             }
         }
     }
-    double cellWidth = floor(double(width()) / universeSizeX) + 1;
-    double cellHeight = floor(double(height()) / universeSizeY) + 1;
+    unsigned cellWidth = getCellWidth();
+    unsigned cellHeight = getCellHeight();
     for (unsigned int i = 0; i < universeSizeY; i++) {
         for (unsigned int j = 0; j < universeSizeX; j++) {
             unsigned int index = i * universeSizeX + j;

@@ -3,12 +3,14 @@
 void GameWidget::mousePressEvent(QMouseEvent *e) {
     if (e->x() >= 0 && e->x() < width() && e->y() >= 0 && e->y() < height()) {
         emit environmentChanged(true);
-        double cellWidth = floor(double(width()) / int(universeSizeX) + 1);
-        double cellHeight = floor(double(height()) / int(universeSizeY) + 1);
-        //qDebug() << e->x()<<" "<<e->y()<<" "<<width()<<" "<<height()<<" "<<cellWidth<<" "<<cellHeight<<"\n";
-        int i = int(floor(e->y() / cellHeight));
-        int j = int(floor(e->x() / cellWidth));
-        int index = i * int(universeSizeX) + j;
+        unsigned cellWidth = getCellWidth();
+        unsigned cellHeight = getCellHeight();
+
+        unsigned i = e->y() / (double) cellHeight;
+        unsigned j = e->x() / (double) cellWidth;
+        unsigned index = i * universeSizeX + j;
+
+        //std::cout << e->x()<<" "<<e->y()<<" "<<width()<<" "<<height()<<" "<<cellWidth<<" "<<cellHeight<<" "<<index<<std::endl;
 
         universe[index] = !universe[index];
         if (!universe[index]) {
@@ -23,15 +25,14 @@ void GameWidget::mousePressEvent(QMouseEvent *e) {
 }
 
 void GameWidget::mouseMoveEvent(QMouseEvent *e) {
-
     if (e->x() >= 0 && e->x() < width() && e->y() >= 0 && e->y() < height()) {
-        double cellWidth = floor(double(width()) / int(universeSizeX) + 1);
-        double cellHeight = floor(double(height()) / int(universeSizeY) + 1);
-        int i = int(floor(e->y() / cellHeight));
-        int j = int(floor(e->x() / cellWidth));
+        unsigned cellWidth = getCellWidth();
+        unsigned cellHeight = getCellHeight();
+        unsigned i = e->y() / (double) cellHeight;
+        unsigned j = e->x() / (double) cellWidth;
         //qDebug() << e->x()<<" "<<e->y()<<" "<<width()<<" "<<height()<<"\n";
 
-        int index = i * int(universeSizeX) + j;
+        unsigned index = i * universeSizeX + j;
         if (!universe[index]) { // if current cell is empty,fill in it
             universe[index] = !universe[index];
             if (universe[index]) {
