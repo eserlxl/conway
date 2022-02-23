@@ -8,7 +8,7 @@ void GameWidget::newGeneration() {
 
     loopCount++;
 
-    populationLimit = unsigned(sqrt(universeSizeX * universeSizeY));
+    populationLimit = 16 * unsigned(sqrt(universeSizeX * universeSizeY));
 
     unChangedCell = 0;
 
