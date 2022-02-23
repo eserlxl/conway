@@ -1,6 +1,9 @@
 #ifndef GAMEWIDGET_H
 #define GAMEWIDGET_H
 
+#include <iostream>
+#include <vector>
+#include <string>
 #include <QColor>
 #include <QWidget>
 #include <QTime>
@@ -13,8 +16,6 @@
 #include <QRandomGenerator>
 #include <QStatusBar>
 #include <qmath.h>
-#include <iostream>
-#include <vector>
 
 class GameWidget : public QWidget {
     Q_OBJECT

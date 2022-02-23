@@ -132,7 +132,6 @@ void GameWidget::newGeneration() {
 
     elapsedTime = double(myTimer.elapsed()) / 1000;
 
-
     double workSpeedPrevious = workDonePrevious / elapsedTimePrevious;
     workSpeed = workDone / elapsedTime;
 
