@@ -23,6 +23,15 @@ void GameWidget::clear() {
     setWorkDone(0);
     emit nextLoopStarts(true);
 
+    universe.clear();
+    value.clear();
+    initialValue.clear();
+    next.clear();
+    nextValue.clear();
+    power.clear();
+    powerValue.clear();
+    bornLoop.clear();
+
     resetUniverse();
 
     for (unsigned int i = 0; i < universeSizeY; i++) {
