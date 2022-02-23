@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
-        currentColor("#fff"),
+        currentColor("#7433FF"),
         game(new GameWidget(this)) {
     ui->setupUi(this);
 
