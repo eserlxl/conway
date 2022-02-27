@@ -35,3 +35,7 @@ void MainWindow::on_customSurviveRuleBox_currentIndexChanged(int index) {
 void MainWindow::on_loopTypeComboBox_currentIndexChanged(int index) {
     game->setLoopType(index);
 }
+
+void MainWindow::on_popLimitSlider_valueChanged(int value) {
+    game->updatePopLimit(value);
+}

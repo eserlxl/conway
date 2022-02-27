@@ -9,7 +9,7 @@ GameWidget::GameWidget(QWidget *parent)
         : QWidget(parent), timer(new QTimer(this)),
           statusBar(new QStatusBar(this)),
           generations(-1), loopCount(0),
-          universeSizeX(100), universeSizeY(100), powerLimit(1), population(0),
+          universeSizeX(100), universeSizeY(100), powerLimit(1), population(0), populationLimit(1000),
           customBornRule(0), customBorn(0), customSurviveRule(0), customSurvive(0),
           loopType(0),
           workDone(0), elapsedTime(1) {

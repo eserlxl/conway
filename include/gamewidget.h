@@ -135,6 +135,8 @@ public
     QString dumpValues();     // dump of current values of the universe
     void setDumpValues(const QString &data);     // set current values of the universe from it's dump
 
+    void updatePopLimit(int sliderValue);
+
 private
     slots:
             void

@@ -64,6 +64,8 @@ private
 
     void on_loopTypeComboBox_currentIndexChanged(int index);
 
+    void on_popLimitSlider_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     QColor currentColor;

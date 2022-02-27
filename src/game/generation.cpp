@@ -2,13 +2,15 @@
 #include <iostream>
 #include <vector>
 
+void GameWidget::updatePopLimit(int sliderValue) {
+    populationLimit = unsigned(sliderValue / 100. * universeSizeX * universeSizeY);
+}
+
 void GameWidget::newGeneration() {
     if (generations < 0)
         generations++;
 
     loopCount++;
-
-    populationLimit = 16 * unsigned(sqrt(universeSizeX * universeSizeY));
 
     unChangedCell = 0;
 

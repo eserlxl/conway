@@ -22,6 +22,9 @@
         <item>
          <layout class="QVBoxLayout" name="gameLayout">
           <item>
+           <layout class="QFormLayout" name="formLayout"/>
+          </item>
+          <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -57,7 +60,7 @@
               <string>Simulation</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_8">
-              <item row="6" column="0">
+              <item row="9" column="0">
                <spacer name="verticalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -70,7 +73,39 @@
                 </property>
                </spacer>
               </item>
-              <item row="5" column="0">
+              <item row="2" column="0">
+               <layout class="QHBoxLayout" name="controlLayout">
+                <item>
+                 <widget class="QPushButton" name="startButton">
+                  <property name="text">
+                   <string>Start</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="stepButton">
+                  <property name="text">
+                   <string>Step</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="stopButton">
+                  <property name="text">
+                   <string>Stop</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="clearButton">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="8" column="0">
                <layout class="QGridLayout" name="gridLayout_5">
                 <item row="0" column="0">
                  <widget class="QLabel" name="label2_4">
@@ -82,7 +117,7 @@
                 <item row="0" column="1">
                  <widget class="QLabel" name="label_3">
                   <property name="text">
-                   <string>Master Cell Color</string>
+                   <string>Color Offset</string>
                   </property>
                  </widget>
                 </item>
@@ -120,87 +155,6 @@
                 </item>
                </layout>
               </item>
-              <item row="3" column="0">
-               <layout class="QGridLayout" name="universeSize">
-                <item row="1" column="0">
-                 <widget class="QPushButton" name="loadButton">
-                  <property name="text">
-                   <string>Load</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QPushButton" name="saveButton">
-                  <property name="text">
-                   <string>Save</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QPushButton" name="loadData">
-                  <property name="text">
-                   <string>Load Data File</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QPushButton" name="randomUniverse">
-                  <property name="text">
-                   <string>Random Universe</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item row="0" column="0">
-               <layout class="QGridLayout" name="gridLayout_3">
-                <property name="sizeConstraint">
-                 <enum>QLayout::SetFixedSize</enum>
-                </property>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="populationLabel">
-                  <property name="text">
-                   <string>Population</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLabel" name="loopCountLabel">
-                  <property name="text">
-                   <string>Loop</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="workDoneLabel">
-                  <property name="text">
-                   <string>Work Done</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLabel" name="workSpeedLabel">
-                  <property name="text">
-                   <string>Work Speed</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QLabel" name="elapsedTime">
-                  <property name="text">
-                   <string>Elapsed Time</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QLabel" name="remainingTimeLabel">
-                  <property name="text">
-                   <string>Remaining Time</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
               <item row="1" column="0">
                <widget class="QProgressBar" name="Tamamlanma">
                 <property name="maximum">
@@ -211,7 +165,7 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="5" column="0">
                <layout class="QGridLayout" name="gridLayout_6">
                 <item row="1" column="2">
                  <widget class="QSpinBox" name="cellSizeY">
@@ -261,33 +215,154 @@
                 </item>
                </layout>
               </item>
-              <item row="2" column="0">
-               <layout class="QHBoxLayout" name="controlLayout">
-                <item>
-                 <widget class="QPushButton" name="startButton">
+              <item row="7" column="0">
+               <layout class="QGridLayout" name="gridLayout_9">
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_4">
                   <property name="text">
-                   <string>Start</string>
+                   <string>Population Limit:</string>
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <widget class="QPushButton" name="stepButton">
-                  <property name="text">
-                   <string>Step</string>
+                <item row="2" column="0">
+                 <widget class="QSlider" name="popLimitSlider">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>100</number>
+                  </property>
+                  <property name="value">
+                   <number>10</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="tickPosition">
+                   <enum>QSlider::TicksBelow</enum>
+                  </property>
+                  <property name="tickInterval">
+                   <number>10</number>
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <widget class="QPushButton" name="stopButton">
+                <item row="3" column="0">
+                 <spacer name="verticalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>10</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="0" column="0">
+                 <spacer name="verticalSpacer_4">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>10</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item row="3" column="0">
+               <layout class="QGridLayout" name="universeSize">
+                <item row="1" column="0">
+                 <widget class="QPushButton" name="loadButton">
                   <property name="text">
-                   <string>Stop</string>
+                   <string>Load</string>
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <widget class="QPushButton" name="clearButton">
+                <item row="2" column="0">
+                 <widget class="QPushButton" name="saveButton">
                   <property name="text">
-                   <string>Clear</string>
+                   <string>Save</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QPushButton" name="loadData">
+                  <property name="text">
+                   <string>Load Data File</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QPushButton" name="randomUniverse">
+                  <property name="text">
+                   <string>Random Universe</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="4" column="0">
+               <widget class="Line" name="line">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <layout class="QGridLayout" name="gridLayout_3">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetFixedSize</enum>
+                </property>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="populationLabel">
+                  <property name="text">
+                   <string>Population</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QLabel" name="elapsedTime">
+                  <property name="text">
+                   <string>Elapsed Time</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="workDoneLabel">
+                  <property name="text">
+                   <string>Work Done</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="workSpeedLabel">
+                  <property name="text">
+                   <string>Work Speed</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="0">
+                 <widget class="QLabel" name="remainingTimeLabel">
+                  <property name="text">
+                   <string>Remaining Time</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="loopCountLabel">
+                  <property name="text">
+                   <string>Loop</string>
                   </property>
                  </widget>
                 </item>
@@ -330,7 +405,13 @@
                   <widget class="QComboBox" name="customBornRuleBox"/>
                  </item>
                  <item row="3" column="1">
-                  <widget class="QComboBox" name="customSurviveAlgorithmBox"/>
+                  <widget class="QComboBox" name="customSurviveAlgorithmBox">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;n: Number of the neighbours&lt;/p&gt;&lt;p&gt;p:
+                     Sum of power of the neighbours&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+                    </string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_31">
@@ -343,7 +424,13 @@
                   </widget>
                  </item>
                  <item row="1" column="1" rowspan="2">
-                  <widget class="QComboBox" name="customBornAlgorithmBox"/>
+                  <widget class="QComboBox" name="customBornAlgorithmBox">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;n: Number of the neighbours&lt;/p&gt;&lt;p&gt;p:
+                     Sum of power of the neighbours&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+                    </string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="0" column="1">
                   <widget class="QLabel" name="label">
@@ -433,6 +520,12 @@
                 </item>
                 <item row="1" column="1">
                  <widget class="QSpinBox" name="powerLimitBox">
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If a cell survive to the next loop, it
+                    increases its power level. When power level of a cell decreases to 0, cell dies. You can set power
+                    upper limit ( 1 - 255 ) from here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+                   </string>
+                  </property>
                   <property name="minimum">
                    <number>1</number>
                   </property>
