@@ -46,10 +46,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->algorithmBox->setCurrentIndex(0);
 
     ui->customSurviveAlgorithmBox->addItem("None");
-    ui->customSurviveAlgorithmBox->addItem("Mean Power");
-    ui->customSurviveAlgorithmBox->addItem("Mean Power Value");
-    ui->customSurviveAlgorithmBox->addItem("Power");
-    ui->customSurviveAlgorithmBox->addItem("Power Value");
+    ui->customSurviveAlgorithmBox->addItem("√n");
+    ui->customSurviveAlgorithmBox->addItem("n");
+    ui->customSurviveAlgorithmBox->addItem("n²");
+    ui->customSurviveAlgorithmBox->addItem("√p");
+    ui->customSurviveAlgorithmBox->addItem("p");
+    ui->customSurviveAlgorithmBox->addItem("p²");
 
     ui->customSurviveRuleBox->addItem("None");
     ui->customSurviveRuleBox->addItem("<");
@@ -60,10 +62,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->customSurviveRuleBox->addItem("≠");
 
     ui->customBornAlgorithmBox->addItem("None");
-    ui->customBornAlgorithmBox->addItem("Mean Power");
-    ui->customBornAlgorithmBox->addItem("Mean Power Value");
-    ui->customBornAlgorithmBox->addItem("Power");
-    ui->customBornAlgorithmBox->addItem("Power Value");
+    ui->customBornAlgorithmBox->addItem("√n");
+    ui->customBornAlgorithmBox->addItem("n");
+    ui->customBornAlgorithmBox->addItem("n²");
+    ui->customBornAlgorithmBox->addItem("√p");
+    ui->customBornAlgorithmBox->addItem("p");
+    ui->customBornAlgorithmBox->addItem("p²");
 
     ui->customBornRuleBox->addItem("None");
     ui->customBornRuleBox->addItem("<");

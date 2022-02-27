@@ -56,16 +56,22 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
             case 7: // Custom
                 switch (customSurviveAlgorithm) {
                     case 1:
-                        customSurviveParameter = power[index] / double(neighbour);
+                        customSurviveParameter = sqrt(power[index]);
                         break;
                     case 2:
-                        customSurviveParameter = powerValue[index] / double(neighbour);
-                        break;
-                    case 3:
                         customSurviveParameter = power[index];
                         break;
+                    case 3:
+                        customSurviveParameter = power[index] * power[index];
+                        break;
                     case 4:
+                        customSurviveParameter = sqrt(powerValue[index]);
+                        break;
+                    case 5:
                         customSurviveParameter = powerValue[index];
+                        break;
+                    case 6:
+                        customSurviveParameter = powerValue[index] * powerValue[index];
                         break;
                     default:
                         break;
@@ -141,16 +147,22 @@ bool GameWidget::isAlive(unsigned int index, unsigned int row, unsigned int col)
             case 7: // Custom
                 switch (customBornAlgorithm) {
                     case 1:
-                        customBornParameter = power[index] / double(neighbour);
+                        customBornParameter = sqrt(power[index]);
                         break;
                     case 2:
-                        customBornParameter = powerValue[index] / double(neighbour);
-                        break;
-                    case 3:
                         customBornParameter = power[index];
                         break;
+                    case 3:
+                        customBornParameter = power[index] * power[index];
+                        break;
                     case 4:
+                        customBornParameter = sqrt(powerValue[index]);
+                        break;
+                    case 5:
                         customBornParameter = powerValue[index];
+                        break;
+                    case 6:
+                        customBornParameter = powerValue[index] * powerValue[index];
                         break;
                     default:
                         break;
