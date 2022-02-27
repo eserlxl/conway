@@ -38,21 +38,34 @@ void GameWidget::paintGrid(QPainter &p) {
 void GameWidget::paintUniverse(QPainter &p) {
     int maXValue = -1;
     int minValue = 1e9;
-    for (unsigned int i = 0; i < universeSizeY; i++) {
-        for (unsigned int j = 0; j < universeSizeX; j++) {
-            if (value[i * universeSizeX + j] < minValue) {
-                minValue = value[i * universeSizeX + j];
+
+    double meanValue = 0;
+    double meanPower = 0;
+    double meanPowerValue = 0;
+    for (unsigned i = 0; i < universeSizeY; i++) {
+        for (unsigned j = 0; j < universeSizeX; j++) {
+            unsigned index = i * universeSizeX + j;
+            if (value[index] < minValue) {
+                minValue = value[index];
             }
-            if (value[i * universeSizeX + j] > maXValue) {
-                maXValue = value[i * universeSizeX + j];
+            if (value[index] > maXValue) {
+                maXValue = value[index];
             }
+            meanValue = value[index];
+            meanPower += power[index];
+            meanPowerValue += powerValue[index];
         }
     }
+    meanValue /= max(1., (double) population);
+    meanPower /= max(1., (double) population);
+    meanPowerValue /= max(1., (double) population);
+
+
     unsigned cellWidth = getCellWidth();
     unsigned cellHeight = getCellHeight();
-    for (unsigned int i = 0; i < universeSizeY; i++) {
-        for (unsigned int j = 0; j < universeSizeX; j++) {
-            unsigned int index = i * universeSizeX + j;
+    for (unsigned i = 0; i < universeSizeY; i++) {
+        for (unsigned j = 0; j < universeSizeX; j++) {
+            unsigned index = i * universeSizeX + j;
             if (universe[index] ==
                 true) { // if there is any sense to paint it
                 double left = double(cellWidth * j); // margin from left
@@ -64,28 +77,21 @@ void GameWidget::paintUniverse(QPainter &p) {
                 int green = masterColor.green();
                 int blue = masterColor.blue();
 
-                int diff = maXValue - minValue;
-
-                if (diff > 0) {
-
-                    if (elapsedTime < 5) {
-                        neighbourhood(i, j);
-                    }
-
-                    int palette = limit(diff, 0, 255);
-
-                    double ratio1 = double(value[index] - minValue) / diff;
-                    double ratio2 = powerValue[index] / 8. / maXValue * 4;
-                    double ratio3 = power[index] / 8. * 4;
-
-                    int r = int(palette * limit(ratio1, 0., 1.));
-                    int g = int(palette * limit(ratio2, 0., 1.));
-                    int b = int(palette * limit(ratio3, 0., 1.));
-
-                    red = limit(limit(palette, red, 255) - r, 0, 255);
-                    green = limit(limit(palette, green, 255) - g, 0, 255);
-                    blue = limit(limit(palette, blue, 255) - b, 0, 255);
+                if (elapsedTime < 5) {
+                    neighbourhood(i, j);
                 }
+
+                double ratio1 = double(value[index]) / max(1., meanValue);
+                double ratio2 = double(powerValue[index]) / max(1., meanPowerValue);
+                double ratio3 = power[index] / max(1., meanPower);
+
+                int r = int(255 * limit(ratio1, 0., 1.));
+                int g = int(255 * limit(ratio2, 0., 1.));
+                int b = int(255 * limit(ratio3, 0., 1.));
+
+                red = (256 + red - r) % 256;
+                green = (256 + green - g) % 256;
+                blue = (256 + blue - b) % 256;
 
                 QColor color = QColor(red, green, blue);
 
