@@ -14,7 +14,7 @@ GameWidget::GameWidget(QWidget *parent)
           loopType(0),
           workDone(0), elapsedTime(1) {
     timer->setInterval(1);
-    m_masterColor = QColor(116, 51, 255);
+    m_masterColor = QColor(245, 255, 50);
 
     connect(timer, SIGNAL(timeout()), this, SLOT(newGeneration()));
 
